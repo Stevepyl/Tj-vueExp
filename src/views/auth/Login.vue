@@ -1,26 +1,18 @@
 <template>
     <div>
         <a-form :model="form" :style="{width:'600px'}">
-            <a-form-item field="userInfo.id" label="学/工号" validate-trigger="input" required allow-clear hide-button>
-                <a-input-number
+            <a-form-item field="userInfo.id" label="学/工号" validate-trigger="input" >
+                <a-input
                     v-model="userInfo.id"
-                    type = "userInfo.id"
-                    :error = "!!userInfo.idErrors.length"
-                    :error-messages="userInfo.idErrors"
-                    :validate-status="success"
                     placeholder="请输入您的学/工号" >
                     <template #prefix>
                         <icon-user />
                     </template> -->
-                </a-input-number>
+                </a-input>
             </a-form-item>
-            <a-form-item field="userInfo.password" label="密码" validate-trigger="input" allow-clear>
+            <a-form-item field="userInfo.password" label="密码" validate-trigger="a-input-password" allow-clear>
                 <a-input-password 
                     v-model="userInfo.password" 
-                    type="userInfo.password"
-                    :error="!!userInfo.passwordErrors.length"
-                    :error-messages="userInfo.passwordErrors"
-                    :validate-status="success"
                     placeholder="请输入密码..." >
                     <template #prefix>
                         <IconLock />
@@ -59,8 +51,8 @@ export default {
         }
     },
     mounted() {
-        this.userInfo.id = this.$route.params.id //? this.$route.params.id : 101
-        this.userInfo.password = this.$route.password// ? this.$route.password : 12345
+        // this.userInfo.id = this.$route.params.id ? this.$route.params.id : 101
+        // this.userInfo.password = this.$route.password ? this.$route.password : 12345
         
         fetch(this.$URL + "/user/isLogin", {
             method: 'GET',
@@ -86,8 +78,8 @@ export default {
             this.userInfo.isActivated = res.isActivated
         })
         
-        // console.log('params from the last page:')
-        // console.log(this.$route.params.id, this.$route.params.password)
+        console.log('params from the last page:')
+        console.log(this.$route.params.id, this.$route.params.password)
         // this.id = this.$route.params.id ? this.$route.params.id : 101
         // this.password = this.$route.params.password ? this.$route.params.password : 12345
     },
