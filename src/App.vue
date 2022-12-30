@@ -10,7 +10,7 @@
             //Login
         },
         mounted() {
-            this.$router.push({name: 'Login'})
+            this.$router.push({ name: 'Auth'})
         },
     }
 </script>

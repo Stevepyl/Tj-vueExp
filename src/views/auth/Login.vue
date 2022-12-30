@@ -1,35 +1,43 @@
 <template>
-    <div>
-        <a-form :model="form" :style="{width:'600px'}">
-            <a-form-item field="userInfo.id" label="学/工号" validate-trigger="input" >
-                <a-input
-                    v-model="userInfo.id"
-                    placeholder="请输入您的学/工号" >
+    <a-card direction="vertical">
+        <div text="32px center" font-bold>
+            实验教学管理系统
+        </div>
+        <div text="26px center" font-bold>
+            Experiment Teaching Management System
+        </div>
+        <div id="lottie" h150px />
+
+        <a-form :model="formModel" layout="vertical" size="large" @submit="submit">
+            <a-form-item field="userInfo.id" label="学/工号" validate-trigger="input">
+                <a-input v-model="userInfo.id" placeholder="请输入您的学/工号">
                     <template #prefix>
                         <icon-user />
                     </template> -->
                 </a-input>
             </a-form-item>
+
             <a-form-item field="userInfo.password" label="密码" validate-trigger="a-input-password" allow-clear>
-                <a-input-password 
-                    v-model="userInfo.password" 
-                    placeholder="请输入密码..." >
+                <a-input-password v-model="userInfo.password" placeholder="请输入密码...">
                     <template #prefix>
                         <IconLock />
                     </template> -->
                 </a-input-password>
             </a-form-item>
             <div>
-                <a-button type="primary" @click="onsubmit">
+                <a-button type="primary" @click="onsubmit" font-bold>
                     登录
                 </a-button>
             </div>
         </a-form>
-    </div>
+
+    </a-card>
 </template>
 
 <script>
 import { reactive } from 'vue'
+import lottie from 'lottie-web'
+import * as animationData from '../../assets/animations/loginAni.json'
 
 export default {
     name: 'Login',
@@ -112,6 +120,8 @@ export default {
                     }
                 })
             }
+        },
+        onMounted() {
 
         }
     }

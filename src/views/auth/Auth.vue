@@ -1,57 +1,44 @@
 <template>
-    <div style="z-index: -1" class="waveWrapper waveAnimation">
-        <div class="waveWrapperInner bgTop">
-            <div class="wave waveTop"
-                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgMiddle">
-            <div class="wave waveMiddle"
-                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgBottom">
-            <div class="wave waveBottom"
-                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-        </div>
-    </div>
-
-    <div class="slogan">
-        <div style="font-size: 40px">
-            实验教学管理系统
-        </div>
-        <div style="font-size: 22px">
-            Experiment Teaching Management System
+    <div hw-screen p0 m0>
+        <div class="login-container m0">
+            <a-carousel class="carousel-box" auto-play show-arrow="never" indicator-type="line" indicator-position="bottom"
+                :style="{
+                    width: '25%',
+                    minWidth: '400px',
+                    height: '50vh',
+                    marginTop: '10vh',
+                }"
+                @change="handleChange">
+                <a-carousel-item v-for="image in carousels" :key="image">
+                    <img :src="image" :style="{width: '100%',}"> 
+                </a-carousel-item>
+            </a-carousel>
+            <div hfull flex-y-center relative>
+            
+            </div>
         </div>
     </div>
-
-    <div style="z-index: 1">
-        <va-card class="auth-box">
-            <va-card-content>
-                <va-tabs style="font-size: 16px" center v-model="tabIndex">
-                    <template #tabs>
-                        <va-tab name="Login">登录</va-tab>
-                        <va-tab name="Signup">注册</va-tab>
-                    </template>
-                </va-tabs>
-                <va-separator />
-                <div>
-                    <router-view />
-                </div>
-            </va-card-content>
-        </va-card>
-    </div>
-
 </template>
 
 <script>
-
 export default {
     name: 'Auth',
     components: {
         // Login,
         // Signup,
     },
-    data() {
+    setup() {
+        const carousels = [
+            'src/assets/login/one.png',
+            'src/assets/login/two.png',
+            'src/assets/login/three.png',
+        ];
+        const handleChange = (value) => {
+            console.log(value)
+        }
         return {
+            carousels,
+            handleChange,
             tabValue: 0,
             activeName: ""
         }
@@ -78,139 +65,76 @@ export default {
             this.$router.push({ name: this.activeName })
         }
     }
-}
+};
 </script>
 
-<style>
-html {
+<style scoped lang="less">
+.login-container {
     width: 100%;
-}
-
-body {
-    width: 100%;
-    /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh; */
-}
-
-/* @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-} */
-
-.slogan {
-    position: absolute;
-    top: 28%;
-    left: 30%;
-    right: 30%;
-    min-width: 400px;
-    font-weight: bold;
-    color: white;
-}
-
-
-
-@keyframes move_wave {
-    0% {
-        transform: translateX(0) translateZ(0) scaleY(1)
-    }
-
-    50% {
-        transform: translateX(-25%) translateZ(0) scaleY(0.55)
-    }
-
-    100% {
-        transform: translateX(-50%) translateZ(0) scaleY(1)
-    }
-}
-
-.waveWrapper {
-    overflow: hidden;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-}
-
-.waveWrapperInner {
-    position: absolute;
-    width: 100%;
-    overflow: hidden;
     height: 100%;
-    bottom: -1px;
-    background-image: linear-gradient(to top, #75adee 20%, #002b88 80%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: url('src/assets/login/bg.png') no-repeat 0 -120px;
+    overflow: hidden;
 }
 
-.bgTop {
-    z-index: 15;
-    opacity: 0.5;
-}
-
-.bgMiddle {
-    z-index: 10;
-    opacity: 0.75;
-}
-
-.bgBottom {
-    z-index: 5;
-}
-
-.wave {
+.form {
     position: absolute;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background-repeat: repeat no-repeat;
-    background-position: 0 bottom;
-    transform-origin: center bottom;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
+    height: 580px;
+    margin-top: 20px;
+    background-color: v-bind(formBgColor);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    box-shadow: 0 0 20px 5px rgba(40, 40, 40, 0.3);
+    border-radius: 8px;
+    z-index: 2;
 }
 
-.waveTop {
-    background-size: 50% 100px;
+.bg-img-box {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 770px;
+    margin-right: -20px;
+
+    &-li {
+        img {
+            margin-right: 20px;
+            margin-top: 20px;
+            width: 230px;
+            border-radius: 2 * 8px;
+            opacity: 0.9;
+        }
+    }
 }
 
-.waveAnimation .waveTop {
-    animation: move-wave 3s;
-    -webkit-animation: move-wave 3s;
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
+@media only screen and (max-width: 1200px) {
+
+    .bg-img-box,
+    .carousel-box {
+        display: none !important;
+    }
 }
 
-.waveMiddle {
-    background-size: 50% 120px;
+.list-complete-item {
+    transition: all 1s;
 }
 
-.waveAnimation .waveMiddle {
-    animation: move_wave 10s linear infinite;
+.list-complete-enter-from,
+.list-complete-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
 }
 
-.waveBottom {
-    background-size: 50% 100px;
+.list-complete-leave-active {
+    position: absolute;
 }
 
-.waveAnimation .waveBottom {
-    animation: move_wave 15s linear infinite;
-}
-
-
-.auth-box {
-    width: 35%;
-    height: 35%;
-    min-height: 240px;
-    position: fixed;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 39%;
+:deep(.arco-carousel-indicator-wrapper-bottom) {
+    background: none;
 }
 </style>
