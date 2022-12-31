@@ -91,13 +91,11 @@ export default {
         };
     },
     mounted() {
-        this.taskId = this.$route.params.taskId
-            ? this.$route.params.taskId
-            : localStorage.getItem("currentTaskId");
-
+        this.taskId = this.$route.params.taskId ? this.$route.params.taskId : localStorage.getItem("currentTaskId");
         console.log("taskId: " + this.taskId);
 
         this.teacherId = localStorage.getItem("userId");
+        console.log("teacherId: " + this.teacherId);
 
         fetch(this.$URL + "/task/get?id=" + this.taskId, {
             method: "GET",
@@ -105,19 +103,19 @@ export default {
         })
             .then((response) => response.json())
             .then((res) => {
+                console.log('res1')
+                console.log(res)
                 this.taskType = res.type;
             });
-        fetch(
-            this.$URL +
-            "/finishes/get/record/detail/task/finished?taskId=" +
-            this.taskId,
-            {
+        fetch(this.$URL +"/finishes/get/record/detail/task/finished?taskId=" + this.taskId, {
                 method: "GET",
                 headers: { satoken: localStorage.getItem("token") },
             }
         )
             .then((response) => response.json())
             .then((res) => {
+                console.log('res2')
+                console.log(res)
                 this.submitRecords = res;
                 for (let i = 0; i < this.submitRecords.length; ++i) {
                     let json = {
@@ -126,6 +124,8 @@ export default {
                         finished: this.submitRecords[i][4] ? "已提交" : "未提交",
                         score: this.submitRecords[i][5] ? this.submitRecords[i][5] : 0,
                     };
+                    console.log('json in res2')
+                    console.log(json)
                     this.submitRecordsJson.push(json);
                 }
                 console.log("submitRecordJson: ", this.submitRecordsJson)
@@ -144,6 +144,8 @@ export default {
                 )
                     .then((response) => response.json())
                     .then((res) => {
+                        console.log('res3')
+                        console.log(res)
                         this.notSubmitScoreGivenRecords = res;
                         for (let i = 0; i < this.notSubmitScoreGivenRecords.length; ++i) {
                             // console.log("submitRecords的第0个元素:", this.notSubmitScoreGivenRecords[0])
@@ -204,19 +206,37 @@ export default {
         handleFetchTaskFile(row, index) {
             console.log(row);
             if (this.taskType == 0) {
+
+                console.log('before push taskId: ' + this.taskId)
+                console.log('before push taskType: ' + this.taskType)
+                console.log('before push teacherId: ' + this.teacherId)
+                console.log('before push studentId: ' + row.id)
+                
+                localStorage.setItem("currentTaskId", this.taskId)
+                localStorage.setItem("currentTeacherId", this.teacherId)
+                localStorage.setItem("currentTaskType", this.taskType)
+                localStorage.setItem("currentStudentId", row.id)
+                localStorage.setItem("currentScore", row.score)
+
+                console.log(localStorage.getItem("currentStudentId"))
+
                 this.$router.push({
                     name: "OnlineReportCheck",
                     params: {
                         taskId: this.taskId,
                         // taskName: this.taskName,
                         taskType: this.taskType,
-
                         teacherId: this.teacherId,
                         studentId: row.id,
                         score: row.score,
                     },
                 });
             } else {
+                console.log('before push taskId else : ' + this.taskId)
+                console.log('before push taskType else: ' + this.taskType)
+                console.log('before push teacherId else:  ' + this.teacherId)
+                console.log('before push studentId else: ' + row.id)
+
                 window.open(
                     this.$URL +
                     "/file/download/taskUpload/" +

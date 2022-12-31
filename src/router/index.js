@@ -155,6 +155,12 @@ const routes = [{
     },
     // Forms / 在线表格
     {
+        path: 'home/course/complextask',
+        name: 'ComplexTask_InCoursePage',
+        component: () =>
+            import("../components/Forms/ComplexExperimentPage_InCoursePage.vue")
+    },
+    {
         path: '/home/task/onlinetask',
         name: 'OnlineTask_InTaskPage',
         component: () =>
@@ -171,12 +177,6 @@ const routes = [{
         name: 'OnlineTask_InCoursePage',
         component: () =>
             import("../components/Forms/OnlineExperimentForm_InCoursePage.vue")
-    },
-    {
-        path: 'home/course/complextask',
-        name: 'ComplexTask_InCoursePage',
-        component: () =>
-            import("../components/Forms/ComplexExperimentPage_InCoursePage.vue")
     },
     {
         path: '/home/grademanagement/course/task/check',

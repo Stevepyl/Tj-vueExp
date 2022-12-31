@@ -249,13 +249,20 @@ export default {
             });
         },
         switchToTask(scope) {
-            console.log("调用switchToCourse时，courseId的值是：" + id)
-            console.log("调用switchToCourse时，index的值是：" + index)
-            console.log(this.courses[index])
+            console.log("调用switchToCourse时，courseId的值是：" + this.courseId)
+            // console.log("调用switchToCourse时，index的值是：" + this.index)
+            // console.log(this.courses[this.index])
             console.log(scope);
             localStorage.setItem("currentTaskId", scope.id);
+            // localStorage.setItem("currentStudentId", this.studentId);
+            // localStorage.setItem("currentTeacherId", this.teacherId);
             // localStorage.setItem("currentTaskId", taskId)
+            console.log("currentTaskId is " + localStorage.getItem("currentTaskId"))
             console.log("courseId=" + localStorage.getItem("courseId"))
+            // console.log("stuId=" + localStorage.getItem("currentStudentId"))
+            // console.log("teaId=" + localStorage.getItem("currentTeacherId"))
+
+
             this.$router.push({
                 name: "GradeManagementTaskPage",
                 params: {
@@ -265,7 +272,7 @@ export default {
                     type: scope.type,
                     deadline: scope.deadline,
                 },
-            });
+            })
         },
     },
 };

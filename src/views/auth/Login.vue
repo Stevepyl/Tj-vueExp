@@ -21,23 +21,11 @@
             </a-button>
         </div>
     </a-form>
-    <!-- <div>
-        <form @submit.prevent="onSubmit" style="margin-top: 30px">
-            <va-input v-model="id" type="id" label="id" :error="!!idErrors.length" :error-messages="idErrors" />
-    
-            <va-input v-model="password" type="password" label="password" :error="!!passwordErrors.length"
-                :error-messages="passwordErrors" style="margin-top: 10px" />
-            <div style="margin-top: 15px">
-                <va-button @click="onSubmit">登录</va-button>
-                <va-button flat style="margin-left: 10px"
-                    @click="this.$router.push({ name: 'RecoverPassword', params: { id: this.id } })">忘记密码？</va-button>
-            </div>
-        </form>
-    </div> -->
 </template>
 
 <script>
 import { reactive } from 'vue'
+import Home from '../Home.vue'
 
 export default {
     name: 'Login',
@@ -70,6 +58,7 @@ export default {
             // 后端返回true，代表已登录
             if ("true" == res) {
                 this.$message.success("登录成功")
+                console.log(import.meta.env.BASE_URL)
                 this.$router.push({name: 'Home'})
             } else {
                 return

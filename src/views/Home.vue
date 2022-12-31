@@ -1,18 +1,15 @@
 <template>
 
-    <va-navbar color="#3d708f" gradient style="height: 8%; min-height: 60px;">
-        <template v-slot:left>
-            <img src="./../assets/onetake-logo-white-ver.png" style="width: 160px" />
-        </template>
+    <va-navbar color="#3491FA" gradient style="height: 8%; min-height: 60px;">
         <template v-slot:center>
             <span style="font-weight: bold; font-size: 18px">实验教学管理系统</span>
         </template>
         <template v-slot:right>
             <div style="height: 60px; min-height: 60px; display: flex">
                 <div style="height: 60px">
-                    <va-button style="top: 12px" round @click="this.$router.push({ name: 'BasicInfo' })">
+                    <a-button style="top: 12px" round @click="this.$router.push({ name: 'BasicInfo' })" shape="circle">
                         <va-avatar :src="myAvatarUrl()" />
-                    </va-button>
+                    </a-button>
                 </div>
                 <div style="line-height: 60px; margin-left: 20px">
                     欢迎，{{ this.name }}
@@ -21,247 +18,171 @@
         </template>
     </va-navbar>
 
+    <div>
+        <!-- manager -->
+        <a-menu v-if="this.identity == 4" mode="horizontal" :default-selected-keys="['1']">
+            <a-sub-menu key="0">
+                <template #icon><icon-notification /></template>
+                <template #title>通知公告</template>
+                <a-menu-item key="0_0" @click="this.$router.push({ name: 'Announcement' })">
+                    通知公告
+                </a-menu-item>
+            </a-sub-menu>
+            
+            <a-sub-menu key="1">
+                <template #icon><icon-user /></template>
+                <template #title>基本信息</template>
+                <a-menu-item key="1_0" @click="onClickBasicInfo()">
+                    查看基本信息
+                </a-menu-item>
+                <a-menu-item key="1_1" @click="onClickEditBasicInfo()">
+                    修改基本信息
+                </a-menu-item>
+                <a-menu-item key="1_1" @click="this.$router.push({ name: 'Security' })">
+                    账号安全
+                </a-menu-item>
+            </a-sub-menu>
+            
+            <a-sub-menu key="2">
+                <template #icon><icon-storage /></template>
+                <template #title>用户管理</template>
+                <a-menu-item key="2_0" @click="this.$router.push({ name: 'AccountManagement' })">
+                    用户管理
+                </a-menu-item>
+            </a-sub-menu>
+            
+            <a-menu-item key="3" @click="handleLogout">
+                <template #icon><icon-left-circle /></template>
+                退出登录
+            </a-menu-item>
+        </a-menu>
+        <!-- teacher -->
+        <a-menu v-if="this.identity == 2 || this.identity == 3" mode="horizontal" :default-selected-keys="['1']">
+            <a-sub-menu key="0">
+                <template #icon><icon-notification /></template>
+                <template #title>通知公告</template>
+                <a-menu-item key="0_0" @click="this.$router.push({ name: 'Announcement' })">
+                    通知公告
+                </a-menu-item>
+            </a-sub-menu>
+
+            <a-sub-menu key="1">
+                <template #icon><icon-user /></template>
+                <template #title>基本信息</template>
+                <a-menu-item key="1_0" @click="onClickBasicInfo()">
+                    查看基本信息
+                </a-menu-item>
+                <a-menu-item key="1_1" @click="onClickEditBasicInfo()">
+                    修改基本信息
+                </a-menu-item>
+                <a-menu-item key="1_1" @click="this.$router.push({ name: 'Security' })">
+                    账号安全
+                </a-menu-item>
+            </a-sub-menu>
+            
+            <a-sub-menu key="2">
+                <template #icon><icon-storage /></template>
+                <template #title>课程资源</template>
+                <a-menu-item key="2_0" @click="onClickCourseResources()">
+                    课程资源
+                </a-menu-item>
+            </a-sub-menu>
+
+            <a-sub-menu key="3">
+                <template #icon><icon-folder /></template>
+                <template #title>课程管理</template>
+                <a-menu-item key="3_0" @click="onClickCourseManagement()">
+                    课程管理
+                </a-menu-item>
+            </a-sub-menu>
+
+            <a-sub-menu key="4">
+                <template #icon><icon-find-replace /></template>
+                <template #title>实验项目管理</template>
+                <a-menu-item key="4_0" @click="onClickTaskManagement()">
+                    实验项目管理
+                </a-menu-item>
+            </a-sub-menu>
+
+            <a-sub-menu key="5">
+                <template #icon><icon-trophy /></template>
+                <template #title>成绩管理</template>
+                <a-menu-item key="5_0" @click="onClickGradeManagement()">
+                    成绩管理
+                </a-menu-item>
+            </a-sub-menu>
+
+            <a-menu-item key="6" @click="handleLogout">
+                <template #icon><icon-left-circle /></template>
+                退出登录
+            </a-menu-item>
+        </a-menu>
+        <!-- student -->
+        <a-menu v-if="this.identity == 1" mode="horizontal" :default-selected-keys="['1']">
+            <a-sub-menu key="0">
+                <template #icon><icon-notification /></template>
+                <template #title>通知公告</template>
+                <a-menu-item key="0_0" @click="this.$router.push({ name: 'Announcement' })">
+                    通知公告
+                </a-menu-item>
+            </a-sub-menu>
+        
+            <a-sub-menu key="1">
+                <template #icon><icon-user /></template>
+                <template #title>基本信息</template>
+                <a-menu-item key="1_0" @click="onClickBasicInfo()">
+                    查看基本信息
+                </a-menu-item>
+                <a-menu-item key="1_1" @click="onClickEditBasicInfo()">
+                    修改基本信息
+                </a-menu-item>
+                <a-menu-item key="1_1" @click="this.$router.push({ name: 'Security' })">
+                    账号安全
+                </a-menu-item>
+            </a-sub-menu>
+        
+            <a-sub-menu key="2">
+                <template #icon><icon-storage /></template>
+                <template #title>课程资源</template>
+                <a-menu-item key="2_0" @click="onClickCourseResources()">
+                    课程资源
+                </a-menu-item>
+            </a-sub-menu>
+        
+            <a-sub-menu key="3">
+                <template #icon><icon-folder /></template>
+                <template #title>我的课程</template>
+                <a-menu-item key="3_0" @click="onClickMyCourses()">
+                    我的课程
+                </a-menu-item>
+            </a-sub-menu>
+        
+            <a-sub-menu key="4">
+                <template #icon><icon-find-replace /></template>
+                <template #title>我的实验项目</template>
+                <a-menu-item key="4_0" @click="onClickMyTasks()">
+                    我的实验项目
+                </a-menu-item>
+            </a-sub-menu>
+        
+            <a-sub-menu key="5">
+                <template #icon><icon-trophy /></template>
+                <template #title>我的成绩</template>
+                <a-menu-item key="5_0" @click="onClickMyGrades()">
+                    我的成绩
+                </a-menu-item>
+            </a-sub-menu>
+        
+            <a-menu-item key="6" @click="handleLogout">
+                <template #icon><icon-left-circle /></template>
+                退出登录
+            </a-menu-item>
+        </a-menu>
+    </div>
     <el-container style="width: 100%; height: 92%; border: 1px solid #eee">
-
-        <va-sidebar textColor="dark" width="12rem" minimizedWidth="0">
-
-            <!-- 以下是管理员的边栏 -->
-            <va-accordion v-model="value" v-show="this.identity == 4" style="font-weight: bold" multiply inset>
-
-                <va-collapse key="0" header="基本信息" icon="person_outline">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickBasicInfo()">
-                            <va-sidebar-item-title>
-                                查看基本信息
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickEditBasicInfo()">
-                            <va-sidebar-item-title>
-                                修改基本信息
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="this.$router.push({ name: 'Security' })">
-                            <va-sidebar-item-title>
-                                账号安全
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-
-                <va-collapse key="1" header="通知公告" icon="notifications">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="this.$router.push({ name: 'Announcement' })">
-                            <va-sidebar-item-title>通知公告</va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-
-                <va-collapse key="2" header="用户管理" icon="manage_accounts">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="this.$router.push({ name: 'AccountManagement' })">
-                            <va-sidebar-item-title>用户管理</va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-
-                <va-sidebar-item>
-                    <va-sidebar-item-content style="text-align: center;" @click="handleLogout">
-                        <va-sidebar-item-title>
-                            退出登录
-                        </va-sidebar-item-title>
-                    </va-sidebar-item-content>
-                </va-sidebar-item>
-
-            </va-accordion>
-
-            <!-- 以下是教师/助教的边栏 -->
-            <va-accordion v-model="value" v-show="this.identity == 2 || this.identity == 3" style="font-weight: bold" multiply
-                inset>
-
-                <va-collapse key="0" header="通知公告" icon="notifications">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="this.$router.push({ name: 'Announcement' })">
-                            <va-sidebar-item-title>通知公告</va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-
-                <va-collapse key="1" header="基本信息" icon="person_outline">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickBasicInfo()">
-                            <va-sidebar-item-title>
-                                查看基本信息
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickEditBasicInfo()">
-                            <va-sidebar-item-title>
-                                修改基本信息
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="this.$router.push({ name: 'Security' })">
-                            <va-sidebar-item-title>
-                                账号安全
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-collapse key="2" header="课程资源" icon="attach_file">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickCourseResources()">
-                            <va-sidebar-item-title>
-                                课程资源
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-collapse key="3" header="课程管理" icon="source">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickCourseManagement()">
-                            <va-sidebar-item-title>
-                                课程管理
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-collapse key="4" header="实验项目管理" icon="mode">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickTaskManagement()">
-                            <va-sidebar-item-title>
-                                实验项目管理
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-collapse key="5" header="成绩管理" icon="emoji_events">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickGradeManagement()">
-                            <va-sidebar-item-title>
-                                成绩管理
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-sidebar-item>
-                    <va-sidebar-item-content style="text-align: center;" @click="handleLogout">
-                        <va-sidebar-item-title>
-                            退出登录
-                        </va-sidebar-item-title>
-                    </va-sidebar-item-content>
-                </va-sidebar-item>
-            </va-accordion>
-
-            <!-- 以下是学生的边栏 -->
-            <va-accordion v-model="value" v-show="this.identity == 1" style="font-weight: bold" multiply inset>
-                <va-collapse key="0" header="通知公告" icon="notifications">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="this.$router.push({ name: 'Announcement' })">
-                            <va-sidebar-item-title>通知公告</va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-
-                <va-collapse key="1" header="基本信息" icon="person_outline">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickBasicInfo()">
-                            <va-sidebar-item-title>
-                                查看基本信息
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickEditBasicInfo()">
-                            <va-sidebar-item-title>
-                                修改基本信息
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="this.$router.push({ name: 'Security' })">
-                            <va-sidebar-item-title>
-                                账号安全
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-
-                <va-collapse key="2" header="课程资源" v-show="this.isActivated" icon="attach_file">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickCourseResources()">
-                            <va-sidebar-item-title>
-                                课程资源
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-collapse key="3" header="我的课程" v-show="this.isActivated" icon="source">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickMyCourses()">
-                            <va-sidebar-item-title>
-                                我的课程
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-collapse key="4" header="我的实验项目" v-show="this.isActivated" icon="mode">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickMyTasks()">
-                            <va-sidebar-item-title>
-                                我的实验项目
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-collapse key="5" header="我的成绩" v-show="this.isActivated" icon="emoji_events">
-                    <va-sidebar-item>
-                        <va-sidebar-item-content @click="onClickMyGrades()">
-                            <va-sidebar-item-title>
-                                我的成绩
-                            </va-sidebar-item-title>
-                        </va-sidebar-item-content>
-                    </va-sidebar-item>
-                </va-collapse>
-                <va-sidebar-item>
-                    <va-sidebar-item-content style="text-align: center;" @click="handleLogout">
-                        <va-sidebar-item-title>
-                            退出登录
-                        </va-sidebar-item-title>
-                    </va-sidebar-item-content>
-                </va-sidebar-item>
-
-                <!-- <va-sidebar-item>
-      <va-sidebar-item-content
-      style="text-align: center;" 
-      @click="this.$router.push({name: 'About'})">
-        <va-sidebar-item-title>
-          About
-        </va-sidebar-item-title>
-      </va-sidebar-item-content>
-    </va-sidebar-item> -->
-            </va-accordion>
-
-
-        </va-sidebar>
         <el-container>
-
             <el-main>
-                <!-- <Announcement v-if="mainIndex==0" />
-      <PersonalInfo v-if="mainIndex==1" />
-      <EditPersonalInfo v-if="mainIndex==2" /> -->
-
-                <!-- 这里改成了嵌套路由 -->
-
-                <!-- <transition name="fade"> -->
                 <router-view />
-                <!-- </transition> -->
-
             </el-main>
         </el-container>
     </el-container>
@@ -519,5 +440,13 @@ body,
 .fade-leave-active {
     opacity: 0;
     transition: opacity .5s;
+}
+
+.menu-demo {
+    box-sizing: border-box;
+    width: 100%;
+    height: 600px;
+    background-color: var(--color-neutral-2);
+    font-weight: bold;
 }
 </style>

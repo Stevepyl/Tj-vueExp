@@ -127,16 +127,6 @@ export default {
             form_procedure: '',
             form_phenomenon: '',
             form_conclusion: '',
-
-            // inputColumns: [
-            //     {name: '实验目的'},
-            //     {name: '实验原理'},
-            //     {name: '实验设备'},
-            //     {name: '实验步骤'},
-            //     {name: '实验现象'},
-            //     {name: '分析讨论'}
-            // ],
-
             courseId: '',
 
             isSubmitted: false,

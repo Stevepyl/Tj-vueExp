@@ -81,6 +81,7 @@ export default {
     },
     mounted() {
         this.id = localStorage.getItem("userId")
+        console.log('localStorage: ' + localStorage)
     },
     methods: {
         addcourse() {
@@ -124,12 +125,6 @@ export default {
                 })
             })
             console.log(this.courseId + " " + localStorage.getItem("userId"))
-
-
-
-
-
-
         }
     }
 }

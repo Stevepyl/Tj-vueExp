@@ -364,13 +364,15 @@ export default {
             if (this.modifyForm.identity == 4) {
                 this.$message.error("不能修改用户身份为管理员");
                 return;
-            } else if (
-                this.modifyInfo.identity == 1 &&
-                (this.modifyForm.identity == 2 || this.modifyForm.identity == 3)
-            ) {
-                this.$message.error("不能将学生修改为助教或教师");
-                return;
-            } else if (
+            } 
+            // else if (
+            //     this.modifyInfo.identity == 1 &&
+            //     (this.modifyForm.identity == 2 || this.modifyForm.identity == 3)
+            // ) {
+            //     this.$message.error("不能将学生修改为助教或教师");
+            //     return;
+            // } 
+            else if (
                 (this.modifyInfo.identity == "助教" ||
                     this.modifyInfo.identity == "教师") &&
                 this.modifyForm.identity == 1

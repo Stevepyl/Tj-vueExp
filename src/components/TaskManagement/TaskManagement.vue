@@ -69,10 +69,9 @@ export default {
         })
     },
     methods: {
-
         switchToCourse(courseId, index) {
-            console.log("调用switchToCourse时 courseId的值是：" + id)
-            console.log("调用switchToCourse时 index的值是：" + index)
+            console.log("调用switchToCourse时 courseId的值是：" + this.id)
+            console.log("调用switchToCourse时 index的值是：" + this.idindex)
             console.log(this.courses[index])
             localStorage.setItem("courseId", courseId)
             console.log("设置courseID了吗？courseId=" + localStorage.getItem("courseId"))

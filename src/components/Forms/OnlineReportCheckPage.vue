@@ -128,21 +128,31 @@ export default {
     },
     mounted() {
         console.log(this.$route.params);
-        this.teacherId = this.$route.params.teacherId;
-        this.studentId = this.$route.params.studentId;
-        this.taskId = this.$route.params.taskId;
-        this.markedStudentScore = this.$route.params.score;
+        // this.teacherId = this.$route.params.teacherId;
+        // this.studentId = this.$route.params.studentId;
+        // this.taskId = this.$route.params.taskId;
+        // this.markedStudentScore = this.$route.params.score;
+        this.teacherId = localStorage.getItem("currentTeacherId")
+        this.studentId = localStorage.getItem("currentStudentId")
+        this.taskId = localStorage.getItem("currentTaskId")
+        this.markedStudentScore = localStorage.getItem("currentScore")
+        
+        console.log('teacherId: ' + this.teacherId)
+        console.log('studentId: ' + this.studentId)
+        console.log('taskId: ' + this.taskId)
+        console.log('markedStudentScore: ' + this.markedStudentScore)
 
         fetch(this.$URL + "/task/get?id=" + this.taskId, {
             method: "GET",
             headers: { satoken: localStorage.getItem("token") },
         })
-            .then((response) => response.json())
-            .then((res) => {
-                this.taskName = res.name;
-                this.courseId = res.courseId;
-                this.url = res.url;
-            });
+        .then((response) => response.json())
+        .then((res) => {
+            console.log('Hello: '+ this.taskId)
+            this.taskName = res.name;
+            this.courseId = res.courseId;
+            this.url = res.url;
+        });
 
         fetch(
             this.$URL +
@@ -191,9 +201,10 @@ export default {
                     });
             });
 
-        var file = require()
-        let reportFile = require(this.$URL + "/file/download/taskUpload/" + this.taskId + "/" + this.studentId + "/" + this.studentId + "/" + this.reportName)
-        console.log(reportFile)
+        // var file = require()
+
+        // let reportFile = require(this.$URL + "/file/download/taskUpload/" + this.taskId + "/" + this.studentId + "/" + this.studentId + "/" + this.reportName)
+        // console.log(reportFile)
     },
     methods: {
         updateScore() {

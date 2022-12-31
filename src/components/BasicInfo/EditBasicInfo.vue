@@ -71,7 +71,9 @@
                         <tr style="width: 220px">
                             <td class="head">头像</td>
                             <td style="text-align: center; width: 170px">
-                                <va-button @click="showModal = !showModal" flat style="color: #555">修改头像</va-button>
+                                <a-button type="primary" @click="showModal = !showModal" >
+                                    修改头像
+                                </a-button>
                             </td>
                         </tr>
                     </tbody>

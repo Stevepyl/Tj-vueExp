@@ -57,10 +57,11 @@
             </a-button>
             <va-card-title style="font-size: 20px">
                 基本信息
-                <va-button flat @click="this.$router.push({ name: 'EditBasicInfo' })"
-                    style="font-size: 10px; color: gray; margin-left: 10px">
+                <a-button type="primary" size="large" @click="this.$router.push({ name: 'EditBasicInfo' })"
+                    style="font-size: 15px; font-weight: bold; margin-left: 10px">
+                    <template #icon><icon-edit /></template>
                     修改信息
-                </va-button>
+                </a-button>
             </va-card-title>
             <va-card-content>
                 <table class="va-table">
