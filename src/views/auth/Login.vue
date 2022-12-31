@@ -36,8 +36,8 @@
 
 <script>
 import { reactive } from 'vue'
-import lottie from 'lottie-web'
-import * as animationData from '../../assets/animations/loginAni.json'
+
+
 
 export default {
     name: 'Login',
