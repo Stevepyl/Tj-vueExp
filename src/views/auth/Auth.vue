@@ -1,29 +1,15 @@
 <template>
     <div class="login-container">
-        <!-- <div style="z-index: -1" class="waveWrapper waveAnimation">
-            <div class="waveWrapperInner bgTop">
-                <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')">
-                </div>
-            </div>
-            <div class="waveWrapperInner bgMiddle">
-                <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')">
-                </div>
-            </div>
-            <div class="waveWrapperInner bgBottom">
-                <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')">
-                </div>
-            </div>
-        </div> -->
-        <a-carousel class="carousel-box" auto-play show-arrow="never" indicator-type="line" indicator-position="bottom" :style="{
+        <a-carousel class="carousel-box" auto-play show-arrow="never" indicator-type="never" indicator-position="bottom" :style="{
             width: '25%',
             minWidth: '400px',
             height: '50vh',
             marginTop: '10vh',
         }">
-            <a-carousel-item v-for="image in carouselImgList" :key="image">
-                <img :src="image" :style="{
-                          width: '100%',
-                        }" />
+            <a-carousel-item v-for="image in imagesList" :key="image">
+                <img :src="getImageUrl(image)" :style="{
+                      width: '100%',
+                    }" />
             </a-carousel-item>
         </a-carousel>
         <div class="slogan">
@@ -59,7 +45,6 @@
 <script>
 // import Login from './Login.vue'
 // import Signup from './Signup.vue'
-
 export default {
     name: 'Auth',
     components: {
@@ -67,14 +52,15 @@ export default {
         // Signup,
     },
     setup() {
-        const carouselImgList = [
-            '../assets/bg.png',
-            'src/assets/two.png',
-            'src/assets/one.png'
+        const imagesList = [
+            'one',
+            'two',
+            'three',
         ];
+        const getImageUrl = (name) => new URL(`../../assets/login/${name}.png`, import.meta.url).href;
         return {
-            carouselImgList,
-            handleChange,
+            getImageUrl,
+            imagesList,
             tabValue: 0,
             activeName: ""
         }
@@ -123,13 +109,13 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: url('../../assets/bg.png') no-repeat 0 -120px;
+    background: url('../../assets/bg.png') no-repeat;
     overflow: hidden;
 }
 
 .slogan {
     position: absolute;
-    top: 28%;
+    top: 23%;
     left: 60%;
     right: 30%;
     min-width: 400px;
@@ -139,18 +125,22 @@ body {
 
 .auth-box {
     width: 35%;
-    height: 35%;
+    height: 50%;
     min-height: 240px;
     position: fixed;
     margin: auto;
     left: 55%;
     right: 30%;
-    top: 39%;
+    top: 35%;
     border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.carousel-box {
-    display: none !important;
+@media only screen and (max-width: 1200px) {
+    .bg-img-box,
+    .carousel-box {
+        display: none !important;
+    }
 }
 
 @keyframes move_wave {

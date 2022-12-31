@@ -42,7 +42,7 @@ export default {
             email: '',
             password: '',
             identity: 0,
-            activated: 0,
+            isActivated: 0,
 
             courses: [],
         }

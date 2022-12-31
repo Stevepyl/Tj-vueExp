@@ -105,7 +105,7 @@
     </div>
 </template>
 
-<script>
+<script lang="jsx">
 export default {
     data() {
         return {
@@ -114,7 +114,7 @@ export default {
             gender: '',
 
             email: '',
-            activated: '',
+            isActivated: '',
 
             genderInput: '',
             nameInput: '',
@@ -141,8 +141,8 @@ export default {
         this.id = localStorage.getItem("userId")
 
         this.email = localStorage.getItem("userEmail")
-        this.activated = localStorage.getItem("userActivated")
-        if (this.activated == 0 || this.activated == '0') {
+        this.isActivated = localStorage.getItem("userActivated")
+        if (this.isActivated == 0 || this.isActivated == '0') {
             this.showAlert = true
         }
 
@@ -217,16 +217,16 @@ export default {
                 })
 
         },
-        onPreview(file) {
-            this.$modal.info({
-                title: 'Preview',
-                content: (
-                    <div style="text-align: center">
-                        <img style="max-width: 100%" src={file.url || URL.createObjectURL(file.originFile)} />
-                    </div>
-                )
-            });
-        },
+        // onPreview(file) {
+        //     this.$modal.info({
+        //         title: 'Preview',
+        //         content: (
+        //             <div style="text-align: center">
+        //                 <img style="max-width: 100%" src={file.url || URL.createObjectURL(file.originFile)} />
+        //             </div>
+        //         )
+        //     });
+        // },
         getUploadAvatarUrl() {
             return this.$URL + "/file/upload/avatar"
         },

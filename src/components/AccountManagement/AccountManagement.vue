@@ -60,7 +60,7 @@
                     激活状态
                 </div>
                 <div>
-                    <a-radio-group v-model="modifyForm.activated" type="button">
+                    <a-radio-group v-model="modifyForm.isActivated" type="button">
                         <a-radio value="0">未激活</a-radio>
                         <a-radio value="1">已激活</a-radio>
                     </a-radio-group>
@@ -105,7 +105,7 @@
                     <el-table-column label="姓名" prop="name" />
                     <el-table-column label="性别" prop="gender" />
                     <el-table-column label="邮箱" prop="email" />
-                    <el-table-column label="激活状态" prop="activated" />
+                    <el-table-column label="激活状态" prop="isActivated" />
                     <el-table-column align="right">
                         <template #header>
                             <el-input v-model="search" size="mini" placeholder="输入姓名关键词查找" />
@@ -128,7 +128,7 @@
                     <el-table-column label="姓名" prop="name" />
                     <el-table-column label="性别" prop="gender" />
                     <el-table-column label="邮箱" prop="email" />
-                    <el-table-column label="激活状态" prop="activated" />
+                    <el-table-column label="激活状态" prop="isActivated" />
                     <el-table-column align="right">
                         <template #header>
                             <el-input v-model="search" size="mini" placeholder="输入姓名关键词查找" />
@@ -151,7 +151,7 @@
                     <el-table-column label="性别" prop="gender" />
                     <el-table-column label="邮箱" prop="email" />
                     <el-table-column label="身份" prop="identity" />
-                    <el-table-column label="激活状态" prop="activated" />
+                    <el-table-column label="激活状态" prop="isActivated" />
                     <el-table-column align="right">
                         <template #header>
                             <el-input v-model="search" size="mini" placeholder="输入姓名关键词查找" />
@@ -193,12 +193,12 @@ export default {
                 gender: "",
                 email: "",
                 identity: "",
-                activated: "",
+                isActivated: "",
             },
 
             modifyForm: {
                 identity: "",
-                activated: "",
+                isActivated: "",
             },
 
             userId: "",
@@ -237,7 +237,7 @@ export default {
                     this.students[i].email = this.students[i].email
                         ? this.students[i].email
                         : "暂无";
-                    this.students[i].activated = this.students[i].activated
+                    this.students[i].isActivated = this.students[i].isActivated
                         ? "已激活"
                         : "未激活";
                 }
@@ -266,7 +266,7 @@ export default {
                                 : "暂无";
                             this.teachers[i].identity =
                                 this.teachers[i].identity == 2 ? "助教" : "教师";
-                            this.teachers[i].activated = this.teachers[i].activated
+                            this.teachers[i].isActivated = this.teachers[i].isActivated
                                 ? "已激活"
                                 : "未激活";
                         }
@@ -304,7 +304,7 @@ export default {
                                             : this.allUsers[i].identity == 4
                                                 ? "管理员"
                                                 : "未知";
-                            this.allUsers[i].activated = this.allUsers[i].activated
+                            this.allUsers[i].isActivated = this.allUsers[i].isActivated
                                 ? "已激活"
                                 : "未激活";
                         }
@@ -322,7 +322,7 @@ export default {
         },
         handleCloseModifyModal() {
             this.modifyForm.identity = "";
-            this.modifyForm.activated = "";
+            this.modifyForm.isActivated = "";
         },
         handleModifyStudentInfo(index) {
             this.modifyInfo.id = this.students[index].id;
@@ -330,7 +330,7 @@ export default {
             this.modifyInfo.gender = this.students[index].gender;
             this.modifyInfo.email = this.students[index].email;
             this.modifyInfo.identity = this.students[index].identity;
-            this.modifyInfo.activated = this.students[index].activated;
+            this.modifyInfo.isActivated = this.students[index].isActivated;
 
             this.modifyInfoModalVisible = !this.modifyInfoModalVisible;
         },
@@ -340,7 +340,7 @@ export default {
             this.modifyInfo.gender = this.teachers[index].gender;
             this.modifyInfo.email = this.teachers[index].email;
             this.modifyInfo.identity = this.teachers[index].identity;
-            this.modifyInfo.activated = this.teachers[index].activated;
+            this.modifyInfo.isActivated = this.teachers[index].isActivated;
 
             this.modifyInfoModalVisible = !this.modifyInfoModalVisible;
         },
@@ -353,7 +353,7 @@ export default {
                 this.modifyInfo.gender = this.allUsers[index].gender;
                 this.modifyInfo.email = this.allUsers[index].email;
                 this.modifyInfo.identity = this.allUsers[index].identity;
-                this.modifyInfo.activated = this.allUsers[index].activated;
+                this.modifyInfo.isActivated = this.allUsers[index].isActivated;
 
                 this.modifyInfoModalVisible = !this.modifyInfoModalVisible;
             }
@@ -381,7 +381,7 @@ export default {
             let req = {
                 id: this.modifyInfo.id,
                 identity: this.modifyForm.identity,
-                activated: this.modifyForm.activated,
+                isActivated: this.modifyForm.isActivated,
             };
             // console.log("req:", req)
             fetch(this.$URL + "/user/update/administrator", {
@@ -481,7 +481,7 @@ export default {
                             : this.userIndentity == "教师"
                                 ? 3
                                 : 0,
-                activated: this.userActivated == "已激活" ? 1 : 0,
+                isActivated: this.userActivated == "已激活" ? 1 : 0,
             };
             fetch(this.$URL + "/user/add/administrator", {
                 method: "POST",

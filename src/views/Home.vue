@@ -192,7 +192,7 @@
                     </va-sidebar-item>
                 </va-collapse>
 
-                <va-collapse key="2" header="课程资源" v-show="this.activated" icon="attach_file">
+                <va-collapse key="2" header="课程资源" v-show="this.isActivated" icon="attach_file">
                     <va-sidebar-item>
                         <va-sidebar-item-content @click="onClickCourseResources()">
                             <va-sidebar-item-title>
@@ -201,7 +201,7 @@
                         </va-sidebar-item-content>
                     </va-sidebar-item>
                 </va-collapse>
-                <va-collapse key="3" header="我的课程" v-show="this.activated" icon="source">
+                <va-collapse key="3" header="我的课程" v-show="this.isActivated" icon="source">
                     <va-sidebar-item>
                         <va-sidebar-item-content @click="onClickMyCourses()">
                             <va-sidebar-item-title>
@@ -210,7 +210,7 @@
                         </va-sidebar-item-content>
                     </va-sidebar-item>
                 </va-collapse>
-                <va-collapse key="4" header="我的实验项目" v-show="this.activated" icon="mode">
+                <va-collapse key="4" header="我的实验项目" v-show="this.isActivated" icon="mode">
                     <va-sidebar-item>
                         <va-sidebar-item-content @click="onClickMyTasks()">
                             <va-sidebar-item-title>
@@ -219,7 +219,7 @@
                         </va-sidebar-item-content>
                     </va-sidebar-item>
                 </va-collapse>
-                <va-collapse key="5" header="我的成绩" v-show="this.activated" icon="emoji_events">
+                <va-collapse key="5" header="我的成绩" v-show="this.isActivated" icon="emoji_events">
                     <va-sidebar-item>
                         <va-sidebar-item-content @click="onClickMyGrades()">
                             <va-sidebar-item-title>
@@ -294,7 +294,7 @@ export default {
             gender: '',
             email: '',
             password: '',
-            activated: '',
+            isActivated: '',
             identity: '',
 
             studentHome: true,
@@ -320,9 +320,9 @@ export default {
                 this.email = result.email
                 this.password = result.password
                 this.identity = result.identity
-                this.activated = result.activated
+                this.isActivated = result.isActivated
 
-                if (!this.activated) {
+                if (!this.isActivated) {
                     this.$message.info("当前账号未激活，无法使用完整功能。请尽快激活账号。")
                 }
 
@@ -350,7 +350,7 @@ export default {
                 localStorage.setItem("gender", this.gender)
                 localStorage.setItem("userIdentity", this.identity)
                 localStorage.setItem("userEmail", this.email)
-                localStorage.setItem("userActivated", this.activated)
+                localStorage.setItem("userActivated", this.isActivated)
 
                 if (this.identity == 2 || this.identity == 3 || this.identity == 4) {
                     this.studentHome = false

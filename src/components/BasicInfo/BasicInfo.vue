@@ -93,7 +93,7 @@
                         </tr>
                         <tr v-show="this.identity != 4">
                             <td class="head">账号激活状态</td>
-                            <td>{{ this.activated == 1 ? '已激活' : '未激活' }}</td>
+                            <td>{{ this.isActivated == 1 ? '已激活' : '未激活' }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -114,7 +114,7 @@ export default {
             gender: '',
             email: '',
             password: '',
-            activated: 0,
+            isActivated: 0,
             identity: '',
 
 
@@ -132,8 +132,8 @@ export default {
         this.password = localStorage.getItem("password")
 
         this.email = localStorage.getItem("userEmail")
-        this.activated = localStorage.getItem("userActivated")
-        if (this.activated == 0 || this.activated == '0') {
+        this.isActivated = localStorage.getItem("userActivated")
+        if (this.isActivated == 0 || this.isActivated == '0') {
             this.showAlert = true
         }
 
@@ -150,7 +150,7 @@ export default {
                 this.gender = res.gender
                 this.email = res.email
                 this.identity = res.identity
-                this.activated = res.activated
+                this.isActivated = res.isActivated
             })
         })
 
