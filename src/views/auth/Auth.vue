@@ -1,18 +1,48 @@
 <template>
-    <div class="auth">
-        <div class="auth-login">
-            <div class="login-banner">
-                <div class="banner-title">实验教学管理系统</div>
-                <img src="src/assets/login01.jpg" />
-            </div>
-
-            <div class="login-content">
-                <div class="content-form">
-
-                </div>
-            </div>
+    <div style="z-index: -1" class="waveWrapper waveAnimation">
+        <div class="waveWrapperInner bgTop">
+            <div class="wave waveTop"
+                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgMiddle">
+            <div class="wave waveMiddle"
+                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgBottom">
+            <div class="wave waveBottom"
+                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
         </div>
     </div>
+
+    <!-- <div style="position: absolute; top: 9%; left: 30%; right: 30%">
+        <img src="./../../assets/onetake-logo-white-ver.png" style="width: 450px" />
+    </div> -->
+    <div class="slogan">
+        <div style="font-size: 40px">
+            实验教学管理系统
+        </div>
+        <div style="font-size: 22px">
+            ONE-TAKE! Experiment Teaching Management System
+        </div>
+    </div>
+
+    <div style="z-index: 1">
+        <va-card class="auth-box">
+            <va-card-content>
+                <va-tabs style="font-size: 16px" center v-model="tabIndex">
+                    <template #tabs>
+                        <va-tab name="Login">登录</va-tab>
+                        <va-tab name="Signup">注册</va-tab>
+                    </template>
+                </va-tabs>
+                <va-separator />
+                <div>
+                    <router-view />
+                </div>
+            </va-card-content>
+        </va-card>
+    </div>
+
 </template>
 
 <script>
@@ -57,180 +87,124 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.auth {
-    position: relative;
-    width: 100vw;
-    min-width: 1200px;
-    height: 100vh;
-    min-height: 100vh;
-    background-color: rgb(69, 136, 250);
-    // background: url('../../assets/images/login-bg.jpg') 0 0 no-repeat;
-    // background-size: 100% 100%;
+<style>
+html {
+    width: 100%;
+}
 
-    .auth-login {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        z-index: 9;
-        height: 560px;
-        transform: translate(-50%, -50%);
-        // .flex_vertical_center_horizontal_between();
+body {
+    width: 100%;
+    /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh; */
+}
 
-        .login-banner {
-            position: relative;
-            width: 800px;
-            height: 100%;
-            margin-right: 35px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+.slogan {
+    position: absolute;
+    top: 28%;
+    left: 30%;
+    right: 30%;
+    min-width: 400px;
+    font-weight: bold;
+    color: white;
+}
 
-            .banner-title {
-                position: absolute;
-                top: 30px;
-                left: 30px;
-                z-index: 9;
-                font-size: 30px;
-                color: #fff;
-                text-align: left;
-            }
 
-            img {
-                width: 100%;
-                height: 100%;
-                border-radius: 15px;
-            }
-        }
 
-        .login-content {
-            position: relative;
-            width: 340px;
-            height: 100%;
-            border-radius: 15px;
-            background-color: #fff;
-            overflow: hidden;
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
 
-            .content-form {
-                position: absolute;
-                top: 60px;
-                left: 0;
-                z-index: 9;
-                width: 100%;
-                // height: 400px;
-                padding: 20px 25px;
-                text-align: left;
-                background-color: #fff;
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
 
-                .form-title {
-                    font-size: 32px;
-                    color: #165dff;
-                    margin-bottom: 10px;
-                }
-
-                .form-tip {
-                    width: 100%;
-                    font-size: 16px;
-                    color: rgba(0, 0, 0, 0.5);
-                    margin-bottom: 20px;
-                }
-
-                .form-wrap {
-                    width: 100%;
-
-                    .wrap-item {
-                        // .flex_vertical_center();
-                        width: 100%;
-                        height: 52px;
-                        padding: 15px 10px 0 5px;
-                        margin-bottom: 15px;
-                        border-bottom: 1px solid #ccc;
-
-                        .item-icon {
-                            font-size: 20px;
-                            color: #999;
-                        }
-
-                        .item-pwd {
-                            font-size: 16px;
-                            color: #999;
-                            cursor: pointer;
-                        }
-
-                        input {
-                            flex: 1;
-                            height: 100%;
-                            padding: 0 10px;
-                            border: none;
-                            outline: none;
-
-                            &::placeholder {
-                                color: #ccc;
-                                font-size: 14px;
-                            }
-                        }
-
-                        .verify-img {
-                            height: 100%;
-
-                            img {
-                                height: 100%;
-                            }
-                        }
-                    }
-
-                    .wrap-forgot {
-                        width: 100%;
-                        font-size: 14px;
-                        color: #165dff;
-                        text-align: left;
-                    }
-
-                    .wrap-submit {
-                        margin-top: 30px;
-                    }
-
-                    .wrap-no {
-                        width: 100%;
-                        font-size: 14px;
-                        color: rgba(0, 0, 0, 0.6);
-                        text-align: center;
-                        margin-top: 40px;
-                    }
-                }
-            }
-        }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
     }
 }
 
-/* 右滑动画 */
-.slider-enter-active,
-.slider-leave-active {
-    transition: all 1s;
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
 }
 
-.slider-enter-from {
-    transform: translateX(100%);
-    opacity: 1;
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    background-image: linear-gradient(to top, #75adee 20%, #002b88 80%);
 }
 
-.slider-leave-to {
-    transform: translateX(-100%);
-    opacity: 0;
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
 }
 
-/* 左滑动画 */
-.slidel-enter-active,
-.slidel-leave-active {
-    transition: all 1s;
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
 }
 
-.slidel-enter-from {
-    transform: translateX(-100%);
-    opacity: 1;
+.bgBottom {
+    z-index: 5;
 }
 
-.slidel-leave-to {
-    transform: translateX(100%);
-    opacity: 0;
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+
+.waveTop {
+    background-size: 50% 100px;
+}
+
+.waveAnimation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+.waveMiddle {
+    background-size: 50% 120px;
+}
+
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+
+.waveBottom {
+    background-size: 50% 100px;
+}
+
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+
+
+.auth-box {
+    width: 35%;
+    height: 35%;
+    min-height: 240px;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 39%;
 }
 </style>

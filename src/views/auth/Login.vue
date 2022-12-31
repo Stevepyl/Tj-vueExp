@@ -1,13 +1,5 @@
 <template>
     <a-card direction="vertical">
-        <div text="32px center" font-bold>
-            实验教学管理系统
-        </div>
-        <div text="26px center" font-bold>
-            Experiment Teaching Management System
-        </div>
-        <div id="lottie" h150px />
-
         <a-form :model="formModel" layout="vertical" size="large" @submit="submit">
             <a-form-item field="userInfo.id" label="学/工号" validate-trigger="input">
                 <a-input v-model="userInfo.id" placeholder="请输入您的学/工号">
