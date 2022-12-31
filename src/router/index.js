@@ -21,9 +21,6 @@ const routes = [{
         component: () =>
             import('../components/RedirectToHome.vue')
     },
-
-
-
     {
         path: '/home/announcement',
         name: 'Announcement',
@@ -234,7 +231,7 @@ const routes = [{
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes
 })
 

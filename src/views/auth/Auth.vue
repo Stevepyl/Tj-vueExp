@@ -1,48 +1,59 @@
 <template>
-    <div style="z-index: -1" class="waveWrapper waveAnimation">
-        <div class="waveWrapperInner bgTop">
-            <div class="wave waveTop"
-                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgMiddle">
-            <div class="wave waveMiddle"
-                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgBottom">
-            <div class="wave waveBottom"
-                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-        </div>
-    </div>
-
-    <div style="position: absolute; top: 9%; left: 30%; right: 30%">
-        <img src="./../../assets/onetake-logo-white-ver.png" style="width: 450px" />
-    </div>
-    <div class="slogan">
-        <div style="font-size: 40px">
-            实验教学管理系统
-        </div>
-        <div style="font-size: 22px">
-            ONE-TAKE! Experiment Teaching Management System
-        </div>
-    </div>
-
-    <div style="z-index: 1">
-        <va-card class="auth-box">
-            <va-card-content>
-                <va-tabs style="font-size: 16px" center v-model="tabIndex">
-                    <template #tabs>
-                        <va-tab name="Login">登录</va-tab>
-                        <va-tab name="Signup">注册</va-tab>
-                    </template>
-                </va-tabs>
-                <va-separator />
-                <div>
-                    <router-view />
+    <div class="login-container">
+        <!-- <div style="z-index: -1" class="waveWrapper waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')">
                 </div>
-            </va-card-content>
-        </va-card>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')">
+                </div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')">
+                </div>
+            </div>
+        </div> -->
+        <a-carousel class="carousel-box" auto-play show-arrow="never" indicator-type="line" indicator-position="bottom" :style="{
+            width: '25%',
+            minWidth: '400px',
+            height: '50vh',
+            marginTop: '10vh',
+        }">
+            <a-carousel-item v-for="image in carouselImgList" :key="image">
+                <img :src="image" :style="{
+                          width: '100%',
+                        }" />
+            </a-carousel-item>
+        </a-carousel>
+        <div class="slogan">
+            <div style="font-size: 40px">
+                实验教学管理系统
+            </div>
+            <div />
+            <div style="font-size: 22px">
+                Experiment Teaching Management System
+            </div>
+        </div>
+        
+        <div style="z-index: 1">
+            <a-card class="auth-box" hoverable>
+                <va-card-content>
+                    <va-tabs style="font-size: 16px" center v-model="tabIndex">
+                        <template #tabs>
+                            <va-tab name="Login">登录</va-tab>
+                            <va-tab name="Signup">注册</va-tab>
+                        </template>
+                    </va-tabs>
+                    <va-separator />
+                    <div>
+                        <router-view />
+                    </div>
+                </va-card-content>
+            </a-card>
+        </div>
     </div>
-
+    
 </template>
 
 <script>
@@ -55,11 +66,17 @@ export default {
         // Login,
         // Signup,
     },
-    data() {
+    setup() {
+        const carouselImgList = [
+            '../assets/bg.png',
+            'src/assets/two.png',
+            'src/assets/one.png'
+        ];
         return {
+            carouselImgList,
+            handleChange,
             tabValue: 0,
             activeName: ""
-            // valueStr: 0
         }
     },
     computed: {
@@ -100,29 +117,41 @@ body {
 	height: 100vh; */
 }
 
-/* @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-} */
+.login-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: url('../../assets/bg.png') no-repeat 0 -120px;
+    overflow: hidden;
+}
 
 .slogan {
     position: absolute;
     top: 28%;
-    left: 30%;
+    left: 60%;
     right: 30%;
     min-width: 400px;
     font-weight: bold;
-    color: white;
+    color: #4080FF;
 }
 
+.auth-box {
+    width: 35%;
+    height: 35%;
+    min-height: 240px;
+    position: fixed;
+    margin: auto;
+    left: 55%;
+    right: 30%;
+    top: 39%;
+    border-radius: 25px;
+}
 
+.carousel-box {
+    display: none !important;
+}
 
 @keyframes move_wave {
     0% {
@@ -206,17 +235,5 @@ body {
 
 .waveAnimation .waveBottom {
     animation: move_wave 15s linear infinite;
-}
-
-
-.auth-box {
-    width: 35%;
-    height: 35%;
-    min-height: 240px;
-    position: fixed;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 39%;
 }
 </style>

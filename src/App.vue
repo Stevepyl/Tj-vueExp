@@ -3,14 +3,13 @@
 </template>
 
 <script>
-//import Login from './views/auth/Login.vue'
     export default {
         name: 'App',
         components: {
             //Login
         },
         mounted() {
-            this.$router.push({ name: 'Auth'})
+            this.$router.push({ name: 'Login'})
         },
     }
 </script>
