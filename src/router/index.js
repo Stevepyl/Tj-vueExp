@@ -51,19 +51,12 @@ const routes = [{
         component: () =>
             import('../components/BasicInfo/Security.vue')
     },
-
-
-
     {
         path: '/home/courseresources',
         name: 'CourseResources',
         component: () =>
             import('../components/CourseResources/CourseResources.vue')
     },
-
-
-
-
     {
         path: '/home/mycourses',
         name: 'MyCourses',
@@ -156,8 +149,6 @@ const routes = [{
         component: () =>
             import('../components/GradeManagement/GradeManagementTaskPage.vue')
     },
-
-
     // AccountManagement / 账户管理
     {
         path: '/home/accountmanagement',
@@ -165,9 +156,6 @@ const routes = [{
         component: () =>
             import('../components/AccountManagement/AccountManagement.vue')
     },
-
-
-
     // Forms / 在线表格
     {
         path: '/home/task/onlinetask',
@@ -175,7 +163,6 @@ const routes = [{
         component: () =>
             import('../components/Forms/OnlineExperimentForm_InTaskPage.vue')
     },
-
     {
         path: '/home/task/complextask',
         name: 'ComplexTask_InTaskPage',
@@ -230,11 +217,8 @@ const routes = [{
 {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-        import( /* webpackChunkName: "about" */ '../views/About.vue')
+        import('../views/About.vue')
 },
 {
     path: '/auth/signupsuccess',
@@ -242,21 +226,6 @@ const routes = [{
     component: () =>
         import('../components/Notifications/SignupSuccess.vue')
 },
-// {
-//   path: '/personalinfo',
-//   name: 'PersonalInfo',
-//   component: PersonalInfo
-// },
-// {
-//   path: '/editpersonalinfo',
-//   name: 'EditPersonalInfo',
-//   component: EditPersonalInfo
-// },
-// {
-//   path: '/announcement',
-//   name: 'Announcement',
-//   component: Announcement
-// },
 {
     path: '/information',
     name: 'Information',

@@ -1,6 +1,6 @@
 {
   "name": "tj-vueexp",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "vite build",
@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "lottie": "^0.0.1",
     "lottie-web": "^5.10.0",
+    "v-calendar": "^3.0.0-alpha.8",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vuestic-ui": "^1.5.3"

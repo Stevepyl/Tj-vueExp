@@ -14,9 +14,9 @@
         </div>
     </div>
 
-    <!-- <div style="position: absolute; top: 9%; left: 30%; right: 30%">
+    <div style="position: absolute; top: 9%; left: 30%; right: 30%">
         <img src="./../../assets/onetake-logo-white-ver.png" style="width: 450px" />
-    </div> -->
+    </div>
     <div class="slogan">
         <div style="font-size: 40px">
             实验教学管理系统
@@ -99,6 +99,18 @@ body {
 	animation: gradient 15s ease infinite;
 	height: 100vh; */
 }
+
+/* @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+} */
 
 .slogan {
     position: absolute;
