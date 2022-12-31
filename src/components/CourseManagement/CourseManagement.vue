@@ -20,28 +20,20 @@
                         style="color: rgb(40,40,40)">新增课程</a-button></div>
                 <div style="height: 20px" />
                 <h2 style="text-align:left">我管理的课程</h2>
-                <va-card v-for="(course, index) in courses" :key="index" color="#b5c4b1" gradient
-                    style="margin-bottom: 10px">
+                <va-card v-for="(course, index) in courses" :key="index" color="#f2f3f5" gradient
+                    style="margin-bottom: 10px; margin-top: 10px;">
                     <va-card-content style="rgb(60, 60, 60); font-weight: bold">
                         <div style="display: flex">
                             <!-- va-card高度: 76px -->
                             <!-- va-card高度: 36px -->
-                            <div style="line-height: 36px; width: 89%; font-size: 18px">{{ course.name }}</div>
+                            <div style="line-height: 36px; width: 89%; font-size: 18px">{{course.name}}</div>
                             <div>
-                                <va-button @click="modifyCourse(course.id, index, 0)" color="#e0e5df"
-                                    style="color: rgb(40,40,40); ">点击进入</va-button>
-                                <!-- </div>
-                  <div> -->
-                                <!-- <div style="height: 2px" />
-                  <va-button @click="deleteCourse(course.id)" color="#e0e5df" style="color: rgb(40,40,40)">点击删除</va-button> -->
+                                <va-button @click="modifyCourse(course.id,index,0)" color="#e0e5df"
+                                    style="color: rgb(40,40,40); ">点击进入
+                                </va-button>
                             </div>
-
-
                         </div>
-
-
                     </va-card-content>
-
                 </va-card>
                 <div style="height: 20px" />
                 <h2 style="text-align:left">我任课的课程</h2>

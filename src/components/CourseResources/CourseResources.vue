@@ -17,8 +17,10 @@
             </a-button>
             <va-card-title style="font-size: 20px">
                 课程资源
-                <va-button v-if="this.identity == 3 || this.identity == 2" color="#aaa" style="color: #777" flat
-                    @click="uploadModalVisible = !uploadModalVisible">上传</va-button>
+                <a-button v-if="this.identity == 3 || this.identity == 2" type="primary" style="font-size: 15px; font-weight: bold; margin-left: 10px"
+                    @click="uploadModalVisible = !uploadModalVisible">
+                    上传
+                </a-button>
             </va-card-title>
             <va-card-content style="text-align: left">
                 <a-dropdown position="tr" trigger="hover" @select="handleSelectCourse">

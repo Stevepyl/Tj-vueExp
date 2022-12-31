@@ -18,8 +18,10 @@
     "lodash": "^4.17.21",
     "lottie": "^0.0.1",
     "lottie-web": "^5.10.0",
-    "v-calendar": "^3.0.0-alpha.8",
+    "v-calendar": "^3.0.0-alpha.6",
     "vue": "^3.2.45",
+    "vue-full-calendar": "^2.8.1-0",
+    "vue-fullcalendar": "^1.0.9",
     "vue-router": "^4.1.6",
     "vuestic-ui": "^1.5.3",
     "xlsx": "^0.17.4"

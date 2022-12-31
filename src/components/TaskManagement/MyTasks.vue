@@ -17,12 +17,11 @@
             <va-card-title style="font-size: 20px">我的实验项目</va-card-title>
             <va-card-content style="text-align: left">
                 <div style="margin-bottom: 15px">
-
                     <va-switch style="font-weight: bold" v-model="isCalendarView" true-inner-label="日历视图"
                         false-inner-label="列表视图" />
                 </div>
 
-                <div v-show="isCalendarView" style="text-align: center">
+                <div v-show="isCalendarView" style="text-align: center;">
                     <v-calendar :masks="masks" :attributes="attributes" style="width: 95%" is-expanded>
                         <template v-slot:day-content="{ day, attributes }">
                             <div style="min-height: 60px; font-size: 15px; font-weight: bold; text-align: center">

@@ -16,7 +16,7 @@
             </a-button>
             <va-card-title style="font-size: 20px">我的课程</va-card-title>
             <va-card-content>
-                <va-card v-for="(course, index) in courses" :key="index" color="#b5c4b1" gradient
+                <va-card v-for="(course, index) in courses" :key="index" color="#f2f3f5" gradient
                     style="margin-bottom: 10px">
                     <va-card-content style="rgb(60, 60, 60); font-weight: bold">
                         <div style="display: flex">
