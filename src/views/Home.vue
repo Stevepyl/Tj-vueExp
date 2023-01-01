@@ -1,6 +1,6 @@
 <template>
 
-    <va-navbar color="#3491FA" gradient style="height: 8%; min-height: 60px;">
+    <va-navbar color="#165DFF" gradient style="height: 8%; min-height: 60px;">
         <template v-slot:center>
             <span style="font-weight: bold; font-size: 18px">实验教学管理系统</span>
         </template>

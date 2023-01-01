@@ -110,7 +110,7 @@
             <a-button type="primary" status="success" @click="handleActivateAccount">激活</a-button>
         </a-alert>
         <va-card>
-            <a-button style="position: absolute; right: 30px; top: 15px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 15px"
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />
@@ -136,9 +136,19 @@
                         </template>
                         <template #default="scope">
                             <a-button style="margin-right: 10px"
-                                @click="handleShowAnnouncementDetail(scope.$index)">查看</a-button>
+                                @click="handleShowAnnouncementDetail(scope.$index)">
+                                <template #icon>
+                                    <icon-eye />
+                                </template>
+                                查看
+                            </a-button>
                             <a-button v-show="this.userIdentity == 4" status="danger"
-                                @click="handleRemoveAnnouncement(scope.$index)">移除</a-button>
+                                @click="handleRemoveAnnouncement(scope.$index)">
+                                <template #icon>
+                                    <icon-delete />
+                                </template>
+                                移除
+                            </a-button>
                         </template>
                     </el-table-column>
 

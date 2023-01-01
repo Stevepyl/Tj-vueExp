@@ -7,7 +7,7 @@
             </va-breadcrumbs>
         </div>
         <va-card>
-            <a-button style="position: absolute; right: 30px; top: 15px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 15px" 
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />
@@ -31,7 +31,7 @@
                                 <div v-for="task in attributes" :key="task.key"
                                     style="margin-top: 5px; line-height: 20px; width: 95%; border-radius: 8px">
                                     <a-popover v-show="task.customData.showPopover">
-                                        <a-button v-show="task.customData.showPopover" type="text" shape="round"
+                                        <a-button v-show="task.customData.showPopover" type="text" 
                                             style="font-weight: bold"
                                             :status="task.customData.buttonStatus">{{ task.customData.status }}</a-button>
                                         <template #content>
@@ -40,14 +40,14 @@
                                                     {{ task.customData.title }}
                                                 </div>
                                                 <div>
-                                                    <a-button shape="round" type="text"
+                                                    <a-button type="text"
                                                         @click="toTaskPage(task.customData.taskId, task.customData.type)">前往</a-button>
                                                 </div>
                                             </div>
                                         </template>
                                     </a-popover>
                                     <div v-show="!task.customData.showPopover">
-                                        <a-button shape="round"
+                                        <a-button 
                                             style="font-weight:bold; color: white; background: #6667ab"
                                             type="text">今日</a-button>
                                     </div>

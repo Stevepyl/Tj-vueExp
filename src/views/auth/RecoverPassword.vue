@@ -13,8 +13,13 @@
                             </div>
                         </div>
                     </div>
-                    <a-button @click="handleSubmitUserId" shape="round"
-                        style="font-weight: bold; font-size: 18px">提交</a-button>
+                    <a-button type="primary" @click="handleSubmitUserId"
+                        style="font-weight: bold; font-size: 18px">
+                        <template #icon> 
+                            <icon-upload />
+                        </template>
+                        提交
+                    </a-button>
                 </div>
             </a-spin>
         </div>
@@ -30,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <a-button @click="handleSubmitVerificationCode" shape="round"
+                <a-button @click="handleSubmitVerificationCode" 
                     style="font-weight: bold; font-size: 18px">提交</a-button>
             </div>
         </div>
@@ -38,7 +43,7 @@
             <div style="font-size: 18px; margin-bottom: 25px">您的密码为：</div>
             <a-input style="margin-bottom: 25px; width: 60%" v-model="password" readonly />
             <div>
-                <a-button style="font-size: 18px; font-weight: bold" shape="round"
+                <a-button style="font-size: 18px; font-weight: bold"
                     @click="this.$router.push({ name: 'Login', params: { id: this.userId, password: this.password } })">前往登录</a-button>
             </div>
         </div>

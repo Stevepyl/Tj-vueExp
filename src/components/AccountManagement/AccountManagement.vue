@@ -76,7 +76,7 @@
             <div style="text-align: center">确认移除？</div>
         </a-modal>
         <va-card>
-            <a-button style="position: absolute; right: 30px; top: 15px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 15px"
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />
@@ -111,9 +111,19 @@
                             <el-input v-model="search" size="mini" placeholder="输入姓名关键词查找" />
                         </template>
                         <template #default="scope">
-                            <a-button @click="handleModifyStudentInfo(scope.$index)">修改</a-button>
+                            <a-button  @click="handleModifyStudentInfo(scope.$index)">
+                                <template #icon>
+                                    <icon-edit />
+                                </template>
+                                修改
+                            </a-button>
                             <a-button status="danger" style="margin-left: 10px"
-                                @click="handleRemove(scope.row)">移除</a-button>
+                                @click="handleRemove(scope.row)">
+                                <template #icon>
+                                    <icon-delete />
+                                </template>
+                                移除
+                            </a-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -134,9 +144,19 @@
                             <el-input v-model="search" size="mini" placeholder="输入姓名关键词查找" />
                         </template>
                         <template #default="scope">
-                            <a-button @click="handleModifyTeacherInfo(scope.$index)">修改</a-button>
-                            <a-button status="danger" type="primary" style="margin-left: 10px"
-                                @click="handleRemove(scope.row)">移除</a-button>
+                            <a-button @click="handleModifyTeacherInfo(scope.$index)">
+                                <template #icon>
+                                    <icon-edit />
+                                </template>
+                                修改
+                            </a-button>
+                            <a-button status="danger" style="margin-left: 10px"
+                                @click="handleRemove(scope.row)">
+                                <template #icon>
+                                    <icon-delete />
+                                </template>
+                                移除
+                            </a-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -157,9 +177,19 @@
                             <el-input v-model="search" size="mini" placeholder="输入姓名关键词查找" />
                         </template>
                         <template #default="scope">
-                            <a-button @click="handleModifyInfo(scope.$index)">修改</a-button>
+                            <a-button @click="handleModifyInfo(scope.$index)">
+                                <template #icon>
+                                    <icon-edit />
+                                </template>
+                                修改
+                            </a-button>
                             <a-button status="danger" style="margin-left: 10px"
-                                @click="handleRemove(scope.row)">移除</a-button>
+                                @click="handleRemove(scope.row)">
+                                <template #icon>
+                                    <icon-delete />
+                                </template>
+                                移除
+                            </a-button>
                         </template>
                     </el-table-column>
                 </el-table>

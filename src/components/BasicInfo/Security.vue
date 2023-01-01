@@ -7,7 +7,7 @@
             </va-breadcrumbs>
         </div>
         <va-card>
-            <a-button style="position: absolute; right: 30px; top: 15px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 15px"
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />
@@ -22,11 +22,16 @@
 
                     <a-spin :loading="loading1" tip="邮件发送中，请稍等……">
                         <div v-show="step == 1">
-                            <div style="height: 80px" />
+                            <div style="height: 20px" />
                             <div style="font-size: 15px; line-height: 20px">点击下方按钮发送验证码至邮箱：<br>{{ this.userEmail }}</div>
-                            <div style="height: 30px" />
+                            <div style="height: 20px" />
                             <div>
-                                <a-button shape="round" @click="handleSendEmail">发送验证码</a-button>
+                                <a-button type="primary" @click="handleSendEmail">
+                                    <template #icon>
+                                        <icon-send />
+                                    </template>
+                                    发送验证码
+                                </a-button>
                             </div>
                         </div>
                     </a-spin>
@@ -40,9 +45,19 @@
                             </div>
                             <div style="height: 30px" />
                             <div>
-                                <a-button shape="round" style="margin-right: 20px"
-                                    @click="handleSubmitVerificationCode">确认提交</a-button>
-                                <a-button shape="round" @click="this.$router.replace({ path: '/refresh' })">返回</a-button>
+                                <a-button type="primary" style="margin-right: 20px"
+                                    @click="handleSubmitVerificationCode">
+                                    <template #icon>
+                                        <icon-check />
+                                    </template>
+                                    确认提交
+                                </a-button>
+                                <a-button  @click="this.$router.replace({ path: '/refresh' })">
+                                    <template #icon>
+                                        <icon-undo />
+                                    </template>
+                                    返回
+                                </a-button>
                             </div>
                         </div>
                     </a-spin>
@@ -65,9 +80,9 @@
                                 <a-input style="width: 150px" v-model="passwords.confirmPassword" />
                             </a-form-item>
                             <div style="margin-top: 30px">
-                                <a-button shape="round" style="margin-right: 20px; margin-left: 12%"
+                                <a-button style="margin-right: 20px; margin-left: 12%"
                                     @click="handleSubmitNewPassword">确认提交</a-button>
-                                <a-button shape="round" @click="this.$router.replace({ path: '/refresh' })">返回</a-button>
+                                <a-button  @click="this.$router.replace({ path: '/refresh' })">返回</a-button>
                             </div>
                         </a-form>
                         <div style="height: 30px" />

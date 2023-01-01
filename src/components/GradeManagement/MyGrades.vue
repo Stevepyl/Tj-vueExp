@@ -9,7 +9,7 @@
         <!-- <a-button style="margin-right: 10px" @click="this.Scorestatus=!this.Scorestatus">实验项目成绩</a-button>
       <a-button @click="this.Scorestatus=!this.Scorestatus">课程最终成绩</a-button> -->
         <va-card>
-            <a-button style="position: absolute; right: 30px; top: 15px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 15px"
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />

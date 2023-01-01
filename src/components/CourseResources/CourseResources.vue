@@ -8,7 +8,7 @@
         </div>
         <!-- <iframe v-show="showIframe" :src="getFileUrl()" /> -->
         <va-card>
-            <a-button style="position: absolute; right: 30px; top: 15px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 15px" 
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />

@@ -8,7 +8,7 @@
     </div>
     <a-modal> </a-modal>
     <va-card>
-        <a-button style="position: absolute; right: 30px; top: 15px" shape="round"
+        <a-button style="position: absolute; right: 30px; top: 15px" 
             @click="this.$router.replace({ path: '/refresh' })">
             <template #icon>
                 <icon-refresh />
@@ -66,31 +66,28 @@
                             :data="additionalData()" style="text-align: center" :on-success="handleOnSuccess"
                             :on-error="handleOnError">
                             <template #trigger>
-                                <va-button @click="handleUploadFileButton" gradient :rounded="false">选择文件</va-button>
+                                <a-button type="primary" @click="handleUploadFileButton" gradient :rounded="false">
+                                    <template #icon>
+                                        <icon-file />
+                                    </template>
+                                    选择文件
+                                </a-button>
                             </template>
-                            <va-button style="margin-left: 20px" flat :rounded="false"
-                                @click="submitUpload">上传</va-button>
-                            <!-- <template #tip>
-                      <div class="el-upload__tip">
-                        jpg/png files with a size less than 500kb
-                      </div>
-                    </template> -->
+                            <a-button type="primary" style="margin-left: 20px" :rounded="false"
+                                @click="submitUpload">
+                                <template #icon>
+                                    <icon-upload />
+                                </template>
+                                上传
+                            </a-button>
                         </el-upload>
                     </div>
                 </div>
             </a-modal>
             <h1>{{ this.courseName }}</h1>
             <div class="course-description">{{ this.courseDescription }}</div>
-            <!-- <a-button type="primary" style="margin-bottom: 20px; background: #496f8d">发布实验项目</a-button> -->
             <a-button v-if="this.identity == 3" @click="addtask()" type="primary"
                 style="margin-bottom: 20px; background: #496f8d">发布实验项目</a-button>
-            <!-- <va-card 
-            v-for="(task, index) in simpleTasks"
-            :key="index"
-            color="#b5c4b1" 
-            gradient
-            style="margin-bottom: 10px"
-            > -->
             <va-card>
                 <va-card-content style="rgb(60, 60, 60); font-weight: bold">
                     <el-table v-if="this.status == 1" :data="

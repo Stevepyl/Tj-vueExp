@@ -48,7 +48,7 @@
             <a-button type="primary" status="success" @click="handleActivateAccount">激活</a-button>
         </a-alert>
         <va-card>
-            <a-button style="position: absolute; right: 30px; top: 20px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 20px" 
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />

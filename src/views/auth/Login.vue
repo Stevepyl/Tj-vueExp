@@ -19,6 +19,10 @@
             <a-button type="primary" @click="onsubmit" font-bold>
                 登录
             </a-button>
+            <a-button type="primary" style="margin-left: 10px"
+                @click="this.$router.push({name: 'RecoverPassword', params: {id: this.userInfo.id}})">
+                忘记密码?
+            </a-button>
         </div>
     </a-form>
 </template>

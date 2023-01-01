@@ -9,7 +9,7 @@
             </va-breadcrumbs>
         </div>
         <va-card style="min-height: 100px">
-            <a-button style="position: absolute; right: 30px; top: 15px; margin-bottom: 20px" shape="round"
+            <a-button style="position: absolute; right: 30px; top: 15px; margin-bottom: 20px" 
                 @click="this.$router.replace({ path: '/refresh' })">
                 <template #icon>
                     <icon-refresh />
